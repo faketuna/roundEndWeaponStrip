@@ -3,7 +3,9 @@
 
 #define PLUGIN_VERSION "0.0.1"
 
-public Plugin:myinfo =
+#pragma newdecls required;
+
+public Plugin myinfo =
 {
     name = "Round end weapon strip",
     author = "faketuna",
@@ -12,25 +14,25 @@ public Plugin:myinfo =
     url = "https://short.f2a.dev/s/github"
 };
 
-public OnPluginStart() {
+public void OnPluginStart() {
     HookEvent("round_end", OnRoundEnd, EventHookMode_Pre);
 }
 
 
-public OnRoundEnd(Handle: event, const String: name[], bool: dontBroadcast) {
-    for(new i = 1; i <= MaxClients; i++) {
+public void OnRoundEnd(Handle event, const char[] name, bool dontBroadcast) {
+    for(int i = 1; i <= MaxClients; i++) {
         if (IsClientInGame(i)) {
             stripPlayer(i);
         }
     }
 }
 
-stripPlayer(client) {
-    for(new i = 0; i < 5; i++) {
-        new weapon = -1;
-        while((weapon = GetPlayerWeaponSlot(client, i)) != -1) {
-            if(IsValidEntity(weapon)) {
-                RemovePlayerItem(client, weapon);
+void stripPlayer(int client) {
+    for(int i = 0; i < 5; i++) {
+        int weaponSlot = -1;
+        while((weaponSlot = GetPlayerWeaponSlot(client, i)) != -1) {
+            if(IsValidEntity(weaponSlot)) {
+                RemovePlayerItem(client, weaponSlot);
             }
         }
     }
