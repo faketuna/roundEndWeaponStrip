@@ -1,4 +1,3 @@
-#include <sourcemod>
 #include <sdktools>
 
 #define PLUGIN_VERSION "0.0.1"
