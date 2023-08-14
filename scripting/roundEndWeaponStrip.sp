@@ -25,7 +25,7 @@ public OnRoundEnd(Handle: event, const String: name[], bool: dontBroadcast) {
     }
 }
 
-public stripPlayer(client) {
+stripPlayer(client) {
     for(new i = 0; i < 5; i++) {
         new weapon = -1;
         while((weapon = GetPlayerWeaponSlot(client, i)) != -1) {
