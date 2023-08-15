@@ -13,12 +13,18 @@ public Plugin myinfo =
     url = "https://short.f2a.dev/s/github"
 };
 
+ConVar g_hPluginEnabled
+
 public void OnPluginStart() {
+    g_hPluginEnabled = CreateConVar("rews_enabled", "1", "Enable/Disable Round end weapon strip.")
     HookEvent("round_end", OnRoundEnd, EventHookMode_Pre);
 }
 
 
 public void OnRoundEnd(Handle event, const char[] name, bool dontBroadcast) {
+    if (!GetConVarBool(g_hPluginEnabled)) {
+        return;
+    }
     for(int i = 1; i <= MaxClients; i++) {
         if (IsClientInGame(i)) {
             stripPlayer(i);
