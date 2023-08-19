@@ -17,7 +17,7 @@ ConVar g_hPluginEnabled
 
 public void OnPluginStart() {
     g_hPluginEnabled = CreateConVar("rews_enabled", "1", "Enable/Disable Round end weapon strip.")
-    HookEvent("round_end", OnRoundEnd, EventHookMode_Pre);
+    HookEvent("round_prestart", OnRoundEnd, EventHookMode_Pre);
 }
 
 
